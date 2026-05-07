@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;800&display=swap');
+
+/* ================= GERAL ================= */
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Noto Sans", sans-serif;
+    color: white;
+}
+
+/* ================= CONTAINER PRINCIPAL ================= */
+.main-login {
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    /* Mudei a paleta de cores para criar um tema espacial (Dark Mode), que cansa menos a vista. */
+    background: linear-gradient(180deg, #050510, #0a0a2a, #1a0b2e);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ================= LADO ESQUERDO (Animação e Texto) ================= */
+
+/* Adicionei uma animação (Keyframes) para dar o efeito de gravidade zero na imagem. */
+@keyframes flutuar {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-25px); }
+}
+
+.left-login > h1 {
+    font-size: 3vw;
+    color: #e0e0ff;
+    text-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+}
+
+.left-login-image {
+    width: 35vw;
+    /* Aplicando a animação criada acima: */
+    animation: flutuar 4s ease-in-out infinite;
+}
+
+/* ================= LADO DIREITO (Card e Formulário) ================= */
+.right-login {
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-login {
+    width: 60%;
+    padding: 40px 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+.card-login > h1 {
+    color: #b388ff;
+    font-weight: 800;
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+}
+
+/* ================= INPUTS ================= */
+.textfield {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.textfield > label {
+    color: #e0e0ff;
+    margin-bottom: 8px;
+    font-size: 11pt;
+}
+
+.textfield > input {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    font-size: 12pt;
+    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: background 0.3s;
+}
+
+/*Focus para quando o usuário clica no campo. */
+.textfield > input:focus {
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(179, 136, 255, 0.3);
+}
+
+.textfield > input::placeholder { color: rgba(255, 255, 255, 0.4); }
+
+/* ================= BOTÃO E RODAPÉ ================= */
+.btn-login {
+    width: 100%;
+    padding: 16px 0;
+    margin-top: 25px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: white;
+    /* gradiente e adicionei o cursor: pointer. */
+    background: linear-gradient(90deg, #6200ea, #b388ff);
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(98, 0, 234, 0.4);
+    transition: transform 0.2s;
+}
+
+.btn-login:hover { transform: scale(1.02); }
+
+.rodape {
+    position: absolute;
+    /*alinhamento do rodapé usando bottom e text-align em vez de margens irregulares. */
+    bottom: 20px;
+    width: 100%;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    font-size: 10pt;
+    z-index: 2;
+}
+
+/* ================= FUNDO ESTRELADO ================= */
+.main-login::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.7;
+    background-image: 
+        radial-gradient(rgba(255,255,255,0.8), 1px, transparent 1px),
+        radial-gradient(rgba(255,255,255,0.6), 1.5px, transparent 1.5px),
+        radial-gradient(rgba(255,255,255,0.4), 2px, transparent 2px);
+    background-size: 180px 210px, 240px 220px, 300px 260px;
+    background-position: 0 0, 60px 90px, 130px 180px;
+}
+
+/* ================= RESPONSIVIDADE ================= */
+@media (max-width: 950px) {
+    .card-login { width: 85%; }
+}
+
+@media (max-width: 600px) {
+    .main-login { flex-direction: column; }
+    .left-login > h1 { display: none; }
+    .left-login { width: 100%; height: auto; display: flex; justify-content: center; margin-top: 40px; }
+    .right-login { width: 100%; height: auto; }
+    .left-login-image { width: 60vw; }
+    .card-login { width: 90%; margin-top: 30px; }
+}
